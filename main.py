@@ -6,7 +6,7 @@ import seaborn as sns #import seaborn for visualization
 import matplotlib.pyplot as plt #import matplotlib to show the visualization
 
 if __name__ == "__main__": #main driver of my program
-    df = load_dataset("data/data.csv") #loading the data set from the load dataset function
+    df = load_dataset("data/data.csv") #loading the data set from data/data.csv via load dataset()
    # print(df.head()) was to show the first 5 rows, but just for testing
 
     #df.info() getting valuable insight on information in the dataset
@@ -16,7 +16,7 @@ if __name__ == "__main__": #main driver of my program
 
     #print(df[df["TotalCharges"].str.strip() == ""]) #Look for Non-Numeric Strings in Total Charges
 
-    #drop the Total Charges row only 11 rows that don't have total charges to make it no longer an object
+    # Drop 11 rows where TotalCharges is an empty string so it can be safely converted to float
     df = df[df["TotalCharges"].str.strip()!= ""]
     #Converting Total Charges to float
     df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
